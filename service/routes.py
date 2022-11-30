@@ -92,13 +92,23 @@ def read_account(id):
     return account.serialize(), status.HTTP_200_OK
 
 
-
-
 ######################################################################
 # UPDATE AN EXISTING ACCOUNT
 ######################################################################
 
-# ... place you code here to UPDATE an account ...
+@app.route("/accounts/<id>", methods=["PUT"])
+def update_account(id):
+    """
+    Updates a single account
+    This endpoint will update an account based on the id that is requested and information given
+    """
+    app.logger.info("Request to update an Account with id: %s", id)
+    account = Account.find(id)
+    if not account:
+        abort(status.HTTP_404_NOT_FOUND)
+    account.deserialize(request.get_json())
+    account.update()
+    return account.serialize(), status.HTTP_200_OK
 
 
 ######################################################################
