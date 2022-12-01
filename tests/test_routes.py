@@ -130,7 +130,7 @@ class TestAccountService(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         data = response.get_json()
         self.assertEqual(len(data), 10)
-    
+
     def test_list_accounts_empty(self):
         """It should return an empty list if there are no accounts"""
         self._create_accounts(0)
@@ -154,7 +154,7 @@ class TestAccountService(TestCase):
         response = self.client.get(
             f"{BASE_URL}/0")
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-    
+
     def test_update_account(self):
         """It should update an existing account"""
         test_account = AccountFactory()
@@ -180,14 +180,3 @@ class TestAccountService(TestCase):
         """It should not allow an illegal method call"""
         response = self.client.delete(BASE_URL)
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
-
-
-
-    
-
-
-
-
-
-
-
