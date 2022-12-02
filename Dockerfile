@@ -1,7 +1,7 @@
 FROM python:3.9-slim
 WORKDIR /app
 COPY requirements.txt .
-RUN pip install -r --no-cache-dir requirements.txt
+RUN pip install -r requirements.txt --no-cache-dir
 COPY service/ ./service/
 RUN useradd --uid 1688 theia && chown -R theia /app
 USER theia
